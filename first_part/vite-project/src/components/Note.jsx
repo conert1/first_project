@@ -3,6 +3,7 @@ const Note = ({ note }) => {
   // return ""
 }
 
+
 // export default Note
 
 // const Note = () => {

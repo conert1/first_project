@@ -5,10 +5,29 @@ import Note from './components/Note'
 const App = ({ notes: initialNotes }) => {
   const [notes, setNotes] = useState(initialNotes)
    const addNote = (event) => {
+    // event.preventDefault()
+    // console.log('button clicked..', event.target)
+
+
     event.preventDefault()
-    console.log('button clicked..', event.target)
+  const noteObject = {
+    content: newNote,
+    important: Math.random() < 0.5,
+    id: String(notes.length + 1),
   }
 
+  setNotes(notes.concat(noteObject))
+  setNewNote('')
+
+  }
+  const [newNote, setNewNote] = useState(
+    'a new note...'
+  ) 
+
+   const handleNoteChange = (event) => {
+    console.log(event.target.value)
+    setNewNote(event.target.value)
+  }
   return (
     <div>
       <h1>Notes</h1>
@@ -19,15 +38,13 @@ const App = ({ notes: initialNotes }) => {
       </ul>
 
 <form onSubmit={addNote}>
-        <input />
-        <button type="submit">save</button>
+        
   <p>
-    <input type="text" id="name" name="user_name" />
+    {/* <input type="text" id="name" name="user_name" /> */}
+    <input value={newNote} onChange={handleNoteChange}/>
   </p>
  
-  <p>
-    <textarea id="msg" name="user_message"></textarea>
-  </p>
+  
 
 
   
@@ -35,11 +52,6 @@ const App = ({ notes: initialNotes }) => {
 
 </form>
 
-
-      {/* <form onSubmit={addNote}>
-        <input />
-        <button type="submit">save</button>
-      </form>  */}
     </div>
   )
 
